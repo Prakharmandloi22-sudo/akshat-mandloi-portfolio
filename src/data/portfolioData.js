@@ -20,7 +20,8 @@ export const portfolioData = {
     location: "India / Available Worldwide",
     availability: "Available for Select Client Projects & Full-time Roles",
     github: "https://github.com/akshatmandloi",
-    linkedin: "https://linkedin.com/in/akshatmandloi",
+    linkedin: "https://www.linkedin.com/in/akshatmandloiuiux/",
+    behance: "https://www.behance.net/akshatmandloi",
     twitter: "https://twitter.com/akshatmandloi",
     figma: "https://figma.com/@akshatmandloi",
     dribbble: "https://dribbble.com/akshatmandloi"

@@ -16,20 +16,46 @@ export default function Navbar({ onOpenContact }) {
         setScrolled(false);
       }
 
-      // Determine active section based on scroll position
-      const sections = ['hero', 'approach', 'work', 'skills', 'experience', 'contact'];
-      const scrollPosition = window.scrollY + 200;
+      // Check if at the very bottom of the document
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 60) {
+        setActiveSection('contact');
+        return;
+      }
 
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const el = document.getElementById(sections[i]);
-        if (el && el.offsetTop <= scrollPosition) {
-          setActiveSection(sections[i]);
+      // Map DOM sections to navbar link IDs in actual visual hierarchy
+      const sectionToNav = [
+        { elId: 'contact', navId: 'contact' },
+        { elId: 'case-studies', navId: 'work' },
+        { elId: 'work', navId: 'work' },
+        { elId: 'core-skills', navId: 'skills' },
+        { elId: 'skills', navId: 'skills' },
+        { elId: 'experience', navId: 'experience' },
+        { elId: 'about', navId: 'approach' },
+        { elId: 'approach', navId: 'approach' },
+        { elId: 'hero', navId: 'hero' }
+      ];
+
+      // Dynamically sort candidates by actual offsetTop in the DOM (descending)
+      const activeCandidates = sectionToNav
+        .map(item => {
+          const el = document.getElementById(item.elId);
+          return el ? { top: el.offsetTop, navId: item.navId } : null;
+        })
+        .filter(Boolean)
+        .sort((a, b) => b.top - a.top);
+
+      const scrollPosition = window.scrollY + 180;
+
+      for (const item of activeCandidates) {
+        if (item.top <= scrollPosition) {
+          setActiveSection(item.navId);
           break;
         }
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -44,9 +70,40 @@ export default function Navbar({ onOpenContact }) {
   const handleNavClick = (e, href) => {
     e.preventDefault();
     setMobileMenuOpen(false);
-    const target = document.querySelector(href);
+
+    if (href === '#contact') {
+      if (onOpenContact) {
+        onOpenContact();
+      } else {
+        const contactEl = document.getElementById('contact');
+        if (contactEl) {
+          contactEl.scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+      setActiveSection('contact');
+      return;
+    }
+
+    let target = null;
+    if (href === '#skills') {
+      // Prioritize the Core Skills & Toolkit dark card, or the services section
+      target = document.getElementById('core-skills') || document.getElementById('skills') || document.querySelector('.services-toolkit-section');
+    } else {
+      target = document.querySelector(href);
+    }
+
     if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
+      const headerOffset = 76;
+      const elementPosition = target.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+
+      const navId = href.replace('#', '');
+      setActiveSection(navId);
     }
   };
 

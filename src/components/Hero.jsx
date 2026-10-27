@@ -14,17 +14,32 @@ export default function Hero({ onOpenContact }) {
 
   return (
     <section id="hero" className="hero-section">
-      <div className="container hero-container">
-        {/* Left Column: Typography & CTAs */}
-        <motion.div 
-          className="hero-left"
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <div className="hero-subhead-wrapper font-mono">
-            <span className="hero-subhead">{portfolioData.personalInfo.subhead}</span>
-          </div>
+      <div className="container hero-full-wrapper">
+        {/* Top Reference Bar Matching Image 1 */}
+        <div className="hero-ref-top-bar font-mono">
+          <button 
+            className="ref-pill-btn"
+            onClick={() => {
+              if (onOpenContact) onOpenContact();
+              else scrollToSection('#contact');
+            }}
+          >
+            Let's work ↗
+          </button>
+          <span className="ref-top-meta">AM® / PORTFOLIO 2026</span>
+        </div>
+
+        <div className="hero-container">
+          {/* Left Column: Typography & CTAs */}
+          <motion.div 
+            className="hero-left"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <div className="hero-subhead-wrapper font-mono">
+              <span className="hero-subhead">UI/UX PORTFOLIO</span>
+            </div>
 
           <h1 className="hero-title font-heading">
             <span className="hero-name-black">{portfolioData.personalInfo.heroHeading.first}</span>
@@ -125,16 +140,75 @@ export default function Hero({ onOpenContact }) {
             </div>
           </div>
         </motion.div>
+        </div>
+
+        {/* Bottom Reference Bar Matching Image 1 */}
+        <div className="hero-ref-bottom-bar">
+          <div className="ref-bottom-left font-mono" onClick={() => scrollToSection('#case-studies')}>
+            <div className="ref-mini-thumb">
+              <span className="thumb-star">✦</span>
+            </div>
+            <div className="ref-thumb-text">
+              <span className="label-top">SELECTED WORK</span>
+              <span className="label-range">01 — 05 ↗</span>
+            </div>
+          </div>
+
+          <div className="ref-bottom-right">
+            <span className="right-mono font-mono">INDEPENDENT UI/UX DESIGNER</span>
+            <span className="right-serif font-serif">for brands ready to shift</span>
+          </div>
+        </div>
       </div>
 
       <style>{`
         .hero-section {
-          padding-top: calc(var(--header-height) + 3.5rem);
-          padding-bottom: 6rem;
-          background-color: var(--bg-light);
-          min-height: 88vh;
+          padding-top: calc(var(--header-height) + 1.5rem);
+          padding-bottom: 5rem;
+          background: linear-gradient(180deg, #F5F3EC 0%, #EBF0DC 60%, #E6ECE0 100%);
+          min-height: 94vh;
           display: flex;
           align-items: center;
+        }
+
+        .hero-full-wrapper {
+          display: flex;
+          flex-direction: column;
+          gap: 2.5rem;
+          width: 100%;
+        }
+
+        .hero-ref-top-bar {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding-bottom: 1rem;
+          border-bottom: 1px solid rgba(17, 17, 19, 0.08);
+        }
+
+        .ref-pill-btn {
+          background: #111113;
+          color: #FFFFFF;
+          border-radius: var(--radius-full);
+          padding: 0.5rem 1.25rem;
+          font-size: 0.75rem;
+          font-weight: 800;
+          letter-spacing: 0.06em;
+          cursor: pointer;
+          transition: transform var(--transition-fast), background var(--transition-fast);
+          box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+        }
+
+        .ref-pill-btn:hover {
+          transform: translateY(-2px);
+          background: #000000;
+        }
+
+        .ref-top-meta {
+          font-size: 0.75rem;
+          font-weight: 700;
+          letter-spacing: 0.12em;
+          color: var(--text-dark-secondary);
         }
 
         .hero-container {
@@ -142,6 +216,83 @@ export default function Hero({ onOpenContact }) {
           grid-template-columns: 1fr 1fr;
           gap: 4rem;
           align-items: center;
+        }
+
+        /* Bottom Reference Bar */
+        .hero-ref-bottom-bar {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding-top: 1.75rem;
+          border-top: 1px solid rgba(17, 17, 19, 0.1);
+          margin-top: 1rem;
+        }
+
+        .ref-bottom-left {
+          display: flex;
+          align-items: center;
+          gap: 0.85rem;
+          cursor: pointer;
+          transition: transform var(--transition-fast);
+        }
+
+        .ref-bottom-left:hover {
+          transform: translateX(4px);
+        }
+
+        .ref-mini-thumb {
+          width: 38px;
+          height: 38px;
+          border-radius: 8px;
+          background: #111113;
+          color: #FFFFFF;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+        }
+
+        .thumb-star {
+          color: var(--accent-orange);
+          font-size: 1rem;
+        }
+
+        .ref-thumb-text {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .label-top {
+          font-size: 0.7rem;
+          font-weight: 800;
+          letter-spacing: 0.08em;
+          color: var(--text-dark-primary);
+        }
+
+        .label-range {
+          font-size: 0.75rem;
+          font-weight: 700;
+          color: var(--accent-orange);
+        }
+
+        .ref-bottom-right {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+          gap: 0.15rem;
+        }
+
+        .right-mono {
+          font-size: 0.68rem;
+          font-weight: 800;
+          letter-spacing: 0.1em;
+          color: var(--text-dark-secondary);
+        }
+
+        .right-serif {
+          font-size: 1.15rem;
+          font-style: italic;
+          color: var(--text-dark-primary);
         }
 
         .hero-subhead {

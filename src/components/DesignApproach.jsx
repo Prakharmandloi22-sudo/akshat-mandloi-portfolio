@@ -183,30 +183,32 @@ export default function DesignApproach() {
   return (
     <section id="approach" className="approach-section">
       <div className="container">
-        {/* Top Header Divider Line */}
-        <div className="section-divider"></div>
-
-        <div className="approach-layout">
-          {/* Left Column Tag */}
-          <div className="approach-tag-col">
-            <span className="approach-num font-mono">01</span>
-            <span className="approach-tag font-mono">DESIGN APPROACH</span>
+        {/* Dark Obsidian Stacking Card Matching Reference Images 2 & 3 */}
+        <div className="approach-dark-card">
+          {/* Top Monospace Header */}
+          <div className="approach-card-top-bar font-mono">
+            <span className="approach-mono-tag">(01) — APPROACH</span>
+            <span className="approach-mono-meta font-mono">CORE PHILOSOPHY · 2026</span>
           </div>
 
-          {/* Right Column Content */}
-          <div className="approach-content-col">
+          {/* Bold Uppercase Manifesto Block */}
+          <div className="manifesto-block">
             <motion.h2 
-              className="approach-heading font-heading"
-              initial={{ opacity: 0, y: 20 }}
+              className="manifesto-heading font-heading"
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              I turn complex requirements into clear, <span className="text-orange">usable interfaces.</span>
+              <span className="m-line light">I DON'T JUST MAKE SCREENS LOOK GOOD.</span>
+              <span className="m-line">I SOLVE REAL USER PROBLEMS.</span>
+              <span className="m-line">INTUITIVE FLOWS. CLEAN NAVIGATION.</span>
+              <span className="m-line">BUSINESS GOALS. PIXEL PERFECTION.</span>
+              <span className="m-line orange">BUILT TO CONVERT.</span>
             </motion.h2>
 
             <motion.p 
-              className="approach-subtext"
+              className="manifesto-subtext font-mono"
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -214,112 +216,133 @@ export default function DesignApproach() {
             >
               {portfolioData.personalInfo.approachSubtext}
             </motion.p>
+          </div>
 
-            {/* Principles Grid with Custom Graphics */}
-            <div className="principles-grid">
-              {portfolioData.designPrinciples.map((item, idx) => {
-                const theme = cardThemes[idx % cardThemes.length];
-                const IconComponent = theme.icon;
+          {/* Principles Grid with Custom Graphics */}
+          <div className="principles-grid">
+            {portfolioData.designPrinciples.map((item, idx) => {
+              const theme = cardThemes[idx % cardThemes.length];
+              const IconComponent = theme.icon;
 
-                return (
-                  <motion.div 
-                    key={item.num}
-                    className="principle-card"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: idx * 0.1 }}
-                    whileHover={{ y: -4 }}
-                  >
-                    {/* Card Top: Number + Themed Icon Badge */}
-                    <div className="principle-card-top">
-                      <div className="num-group font-mono">
-                        <span className="card-num">{item.num}</span>
-                        <span className="card-theme-tag">{theme.tag}</span>
-                      </div>
-
-                      <div 
-                        className="principle-icon-badge"
-                        style={{ backgroundColor: theme.bg, color: theme.color, borderColor: theme.border }}
-                      >
-                        <IconComponent size={17} />
-                      </div>
+              return (
+                <motion.div 
+                  key={item.num}
+                  className="principle-card"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
+                  whileHover={{ y: -4 }}
+                >
+                  {/* Card Top: Number + Themed Icon Badge */}
+                  <div className="principle-card-top">
+                    <div className="num-group font-mono">
+                      <span className="card-num">{item.num}</span>
+                      <span className="card-theme-tag">{theme.tag}</span>
                     </div>
 
-                    {/* Rich Interactive / Custom Graphic Component */}
-                    {renderPrincipleGraphic(idx)}
-
-                    {/* Card Title & Description */}
-                    <div className="principle-text-block">
-                      <h3 className="principle-card-title font-heading">{item.title}</h3>
-                      <p className="principle-card-desc">{item.desc}</p>
+                    <div 
+                      className="principle-icon-badge"
+                      style={{ backgroundColor: theme.bg, color: theme.color, borderColor: theme.border }}
+                    >
+                      <IconComponent size={17} />
                     </div>
-                  </motion.div>
-                );
-              })}
-            </div>
+                  </div>
+
+                  {/* Rich Interactive / Custom Graphic Component */}
+                  {renderPrincipleGraphic(idx)}
+
+                  {/* Card Title & Description */}
+                  <div className="principle-text-block">
+                    <h3 className="principle-card-title font-heading">{item.title}</h3>
+                    <p className="principle-card-desc">{item.desc}</p>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </div>
 
       <style>{`
         .approach-section {
-          padding: 6.5rem 0;
+          padding: 4rem 0 6rem;
           background-color: var(--bg-light);
         }
 
-        .section-divider {
-          width: 100%;
-          height: 1px;
-          background-color: var(--border-light);
+        .approach-dark-card {
+          background-color: #111113;
+          color: #FFFFFF;
+          border-radius: 32px 32px 28px 28px;
+          padding: 3.5rem 3.5rem 4rem;
+          box-shadow: 0 -12px 36px rgba(0, 0, 0, 0.25), 0 24px 48px rgba(0, 0, 0, 0.16);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          position: sticky;
+          top: 60px;
           margin-bottom: 4rem;
+          transition: transform 0.3s ease;
         }
 
-        .approach-layout {
-          display: grid;
-          grid-template-columns: 240px 1fr;
-          gap: 3.5rem;
-        }
-
-        .approach-tag-col {
+        .approach-card-top-bar {
           display: flex;
           align-items: center;
-          gap: 0.6rem;
-          align-self: start;
+          justify-content: space-between;
+          padding-bottom: 1.75rem;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+          margin-bottom: 2.5rem;
         }
 
-        .approach-num {
-          font-size: 0.8rem;
-          font-weight: 700;
-          color: var(--accent-orange);
-        }
-
-        .approach-tag {
-          font-size: 0.75rem;
-          font-weight: 700;
-          letter-spacing: 0.12em;
-          color: var(--text-dark-secondary);
-        }
-
-        .approach-content-col {
-          max-width: 920px;
-        }
-
-        .approach-heading {
-          font-size: clamp(2.4rem, 5vw, 4.2rem);
+        .approach-mono-tag {
+          font-size: 0.85rem;
           font-weight: 800;
-          line-height: 1.1;
-          letter-spacing: -0.03em;
-          color: var(--text-dark-primary);
+          letter-spacing: 0.12em;
+          color: #FFFFFF;
+        }
+
+        .approach-mono-meta {
+          font-size: 0.72rem;
+          font-weight: 700;
+          letter-spacing: 0.1em;
+          color: rgba(255, 255, 255, 0.5);
+        }
+
+        .manifesto-block {
+          margin-bottom: 3.5rem;
+        }
+
+        .manifesto-heading {
+          font-size: clamp(2rem, 4.2vw, 3.4rem);
+          font-weight: 900;
+          line-height: 1.15;
+          letter-spacing: -0.02em;
+          display: flex;
+          flex-direction: column;
+          gap: 0.2rem;
           margin-bottom: 1.5rem;
         }
 
-        .approach-subtext {
-          font-size: clamp(1.05rem, 1.8vw, 1.25rem);
-          color: var(--text-dark-secondary);
-          line-height: 1.55;
-          margin-bottom: 3.5rem;
-          max-width: 680px;
+        .m-line {
+          color: rgba(255, 255, 255, 0.38);
+          transition: color var(--transition-fast);
+        }
+
+        .m-line.light {
+          color: #FFFFFF;
+        }
+
+        .m-line.orange {
+          color: var(--accent-orange);
+        }
+
+        .m-line:hover {
+          color: #FFFFFF;
+        }
+
+        .manifesto-subtext {
+          font-size: 1rem;
+          color: rgba(255, 255, 255, 0.7);
+          max-width: 620px;
+          line-height: 1.6;
         }
 
         .principles-grid {
