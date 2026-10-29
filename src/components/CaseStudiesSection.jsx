@@ -96,12 +96,13 @@ export default function CaseStudiesSection() {
   };
 
   return (
-    <section id="case-studies" className="case-studies-section">
+    <section id="work" className="case-studies-section">
+      <div id="case-studies"></div>
       <div className="container">
         {/* Section Header */}
         <div className="cs-top-bar font-mono">
-          <span className="cs-meta">CASE STUDIES</span>
-          <span className="cs-stack-hint">SCROLL TO STACK CARDS ↕</span>
+          <span className="cs-meta">04 / CASE STUDIES</span>
+          <span className="cs-stack-hint desktop-only">SCROLL TO STACK CARDS ↕</span>
         </div>
 
         <div className="cs-header-layout">
@@ -121,10 +122,29 @@ export default function CaseStudiesSection() {
           </p>
         </div>
 
+        {/* Quick Project Jump Tabs (Visible on both mobile and desktop) */}
+        <div className="cs-quick-nav font-mono">
+          <span className="cs-nav-label">JUMP TO:</span>
+          <div className="cs-nav-pills-scroll">
+            {caseStudies.map((item, idx) => (
+              <button
+                key={item.id}
+                type="button"
+                className="cs-nav-pill"
+                onClick={() => scrollToCard(idx)}
+              >
+                <span className="pill-dot" style={{ backgroundColor: item.themeBg }}></span>
+                <span className="pill-num">{item.num}</span>
+                <span className="pill-name">{item.title.split(' ')[0]}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+
         {/* =========================================================================
-            STACKING CARDS CONTAINER (OVERLAPPING / STICKY DECK)
-            As the user scrolls down, each card slides up and stacks over the previous one,
-            leaving the top header peeking in a deck layout.
+            STACKING CARDS CONTAINER
+            - Laptop/Desktop: Adaptive sticky stacking deck with responsive height
+            - Mobile: Clean, natural flow with zero clipping or overlapping bugs
            ========================================================================= */}
         <div className="stacking-cards-container">
           {caseStudies.map((item, idx) => (
@@ -175,6 +195,7 @@ export default function CaseStudiesSection() {
                   {/* Actions Row */}
                   <div className="stack-action-row">
                     <button 
+                      type="button"
                       className="stack-view-btn font-mono"
                       onClick={() => setSelectedProject(item.project)}
                     >
@@ -263,11 +284,11 @@ export default function CaseStudiesSection() {
           align-items: flex-end;
           justify-content: space-between;
           gap: 3rem;
-          margin-bottom: 4.5rem;
+          margin-bottom: 2rem;
         }
 
         .cs-heading {
-          font-size: clamp(2.8rem, 5.5vw, 4.8rem);
+          font-size: clamp(2.4rem, 5vw, 4.4rem);
           font-weight: 800;
           line-height: 1.05;
           letter-spacing: -0.03em;
@@ -281,270 +302,501 @@ export default function CaseStudiesSection() {
           line-height: 1.5;
         }
 
-        /* =========================================================================
-           STACKING CARDS CONTAINER (OVERLAPPING / STICKY DECK)
-           Each card has position: sticky and offsets smoothly so that as you scroll,
-           each card stacks over the previous one, leaving a visible tab at the top.
-           ========================================================================= */
-        .stacking-cards-container {
-          display: flex;
-          flex-direction: column;
-          gap: 0;
-          position: relative;
-        }
-
-        .stacking-card-item {
-          position: sticky;
-          /* Offsets each card slightly so top labels stay visible in a stacked deck */
-          top: calc(75px + var(--card-index) * 36px);
-          border-radius: 32px 32px 28px 28px;
-          padding: 2.5rem 3rem 2rem;
-          min-height: 600px;
-          margin-bottom: 6rem;
-          box-shadow: 0 -12px 36px rgba(0, 0, 0, 0.14), 0 20px 40px rgba(0, 0, 0, 0.08);
-          border: 1px solid rgba(17, 17, 19, 0.12);
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
-          overflow: hidden;
-        }
-
-        .stacking-card-item:hover {
-          box-shadow: 0 -16px 44px rgba(0, 0, 0, 0.2), 0 24px 48px rgba(0, 0, 0, 0.12);
-        }
-
-        /* Card Top Metadata Header Bar */
-        .stack-card-header {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding-bottom: 1.5rem;
-          border-bottom: 1px solid rgba(17, 17, 19, 0.12);
-          margin-bottom: 2rem;
-        }
-
-        .header-case-label {
+        /* Quick Project Jump Navigation Bar */
+        .cs-quick-nav {
           display: flex;
           align-items: center;
           gap: 1rem;
+          margin-bottom: 3.5rem;
+          padding: 0.75rem 0;
         }
 
-        .case-num-pill {
-          font-size: 0.85rem;
+        .cs-nav-label {
+          font-size: 0.7rem;
           font-weight: 800;
           letter-spacing: 0.1em;
+          color: var(--text-dark-muted);
+          white-space: nowrap;
         }
 
-        .case-metric-pill {
-          font-size: 0.7rem;
-          font-weight: 700;
-          background: rgba(17, 17, 19, 0.1);
-          padding: 0.25rem 0.65rem;
-          border-radius: var(--radius-full);
-          letter-spacing: 0.05em;
-        }
-
-        .header-case-year {
-          font-size: 0.85rem;
-          font-weight: 700;
-          letter-spacing: 0.1em;
-          opacity: 0.8;
-        }
-
-        /* Card Body Grid */
-        .stack-card-body {
-          display: grid;
-          grid-template-columns: 1.15fr 1fr;
-          gap: 3.5rem;
-          align-items: center;
-          flex: 1;
-          margin-bottom: 2rem;
-        }
-
-        .stack-card-content {
-          display: flex;
-          flex-direction: column;
-          gap: 1.5rem;
-        }
-
-        .stack-title-group {
-          display: flex;
-          flex-direction: column;
-          gap: 0.5rem;
-        }
-
-        .stack-card-title {
-          font-size: clamp(2.2rem, 4vw, 3.4rem);
-          font-weight: 900;
-          letter-spacing: -0.02em;
-          line-height: 1.05;
-        }
-
-        .stack-card-subtitle {
-          font-size: clamp(1.15rem, 1.8vw, 1.45rem);
-          font-style: italic;
-          font-weight: 400;
-          line-height: 1.3;
-          opacity: 0.9;
-        }
-
-        .stack-card-desc {
-          font-size: 1rem;
-          line-height: 1.6;
-          opacity: 0.92;
-          max-width: 520px;
-        }
-
-        .stack-tags-row {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 0.5rem;
-        }
-
-        .stack-tag-pill {
-          font-size: 0.68rem;
-          font-weight: 700;
-          letter-spacing: 0.06em;
-          padding: 0.35rem 0.75rem;
-          border-radius: var(--radius-full);
-          border: 1px solid rgba(17, 17, 19, 0.08);
-        }
-
-        /* Action Buttons */
-        .stack-action-row {
+        .cs-nav-pills-scroll {
           display: flex;
           align-items: center;
-          gap: 1.25rem;
-          margin-top: 0.5rem;
+          gap: 0.5rem;
+          overflow-x: auto;
+          scrollbar-width: none;
+          -webkit-overflow-scrolling: touch;
+          padding: 4px 2px;
+        }
+        .cs-nav-pills-scroll::-webkit-scrollbar {
+          display: none;
         }
 
-        .stack-view-btn {
+        .cs-nav-pill {
           display: inline-flex;
           align-items: center;
-          gap: 0.6rem;
-          background: #111113;
-          color: #FFFFFF;
-          border: none;
-          padding: 0.85rem 1.75rem;
+          gap: 0.5rem;
+          background: #FFFFFF;
+          border: 1px solid var(--border-light);
           border-radius: var(--radius-full);
-          font-size: 0.8rem;
-          font-weight: 800;
-          letter-spacing: 0.08em;
-          cursor: pointer;
-          transition: all var(--transition-fast);
-          box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
-        }
-
-        .stack-view-btn:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
-          background: #000000;
-        }
-
-        .stack-live-link {
-          font-size: 0.78rem;
-          font-weight: 800;
-          letter-spacing: 0.08em;
-          color: inherit;
-          text-decoration: underline;
-          text-underline-offset: 4px;
-          cursor: pointer;
-          opacity: 0.85;
-          transition: opacity var(--transition-fast);
-        }
-
-        .stack-live-link:hover {
-          opacity: 1;
-        }
-
-        /* Right Visual Area */
-        .stack-card-visual {
-          width: 100%;
-          min-height: 380px;
-          border-radius: var(--radius-md);
-          overflow: hidden;
-          box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
-          border: 1px solid rgba(17, 17, 19, 0.1);
-          cursor: pointer;
-          transition: transform var(--transition-fast);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          background: rgba(255, 255, 255, 0.3);
-          backdrop-filter: blur(8px);
-        }
-
-        .stack-card-visual:hover {
-          transform: scale(1.02);
-        }
-
-        /* Bottom Footer Strip */
-        .stack-card-footer {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding-top: 1.25rem;
-          border-top: 1px solid rgba(17, 17, 19, 0.1);
+          padding: 0.45rem 0.9rem;
           font-size: 0.72rem;
           font-weight: 700;
-          opacity: 0.8;
-        }
-
-        .footer-action {
+          letter-spacing: 0.04em;
+          color: var(--text-dark-primary);
           cursor: pointer;
-          text-decoration: underline;
-          text-underline-offset: 3px;
+          white-space: nowrap;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+          transition: all var(--transition-fast);
+          flex-shrink: 0;
         }
 
-        .footer-action:hover {
-          opacity: 1;
+        .cs-nav-pill:hover {
+          border-color: var(--accent-orange);
+          transform: translateY(-1px);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
 
-        /* Responsive Breakpoints */
-        @media (max-width: 1024px) {
-          .stack-card-body {
-            grid-template-columns: 1fr;
-            gap: 2rem;
+        .pill-dot {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          flex-shrink: 0;
+        }
+
+        .pill-num {
+          color: var(--accent-orange);
+          font-weight: 800;
+        }
+
+        .pill-name {
+          color: var(--text-dark-primary);
+        }
+
+        /* =========================================================================
+           LAPTOP & DESKTOP STYLES (min-width: 821px)
+           Controlled sticky stacking that never extends below standard laptop viewports
+           ========================================================================= */
+        @media (min-width: 821px) {
+          .stacking-cards-container {
+            position: relative;
+            padding-bottom: 4rem;
           }
 
           .stacking-card-item {
-            padding: 2rem 1.75rem;
-            min-height: auto;
-            margin-bottom: 4rem;
-          }
-
-          .stack-card-visual {
-            min-height: 280px;
-          }
-        }
-
-        @media (max-width: 768px) {
-          .cs-header-layout {
+            position: sticky;
+            top: calc(85px + var(--card-index) * 16px);
+            border-radius: 30px;
+            padding: 2.25rem 2.75rem 1.75rem;
+            height: min(540px, calc(100vh - 150px));
+            min-height: 470px;
+            max-height: 580px;
+            margin-bottom: 25vh;
+            box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.12), 0 20px 40px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(17, 17, 19, 0.12);
+            display: flex;
             flex-direction: column;
-            align-items: flex-start;
-            gap: 1.5rem;
+            justify-content: space-between;
+            transition: box-shadow 0.3s ease;
+            overflow: hidden;
+          }
+
+          .stacking-card-item:last-child {
+            margin-bottom: 2rem;
           }
 
           .stack-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 1.25rem;
+            border-bottom: 1px solid rgba(17, 17, 19, 0.12);
+            margin-bottom: 1.25rem;
+          }
+
+          .header-case-label {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+          }
+
+          .case-num-pill {
+            font-size: 0.85rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+          }
+
+          .case-metric-pill {
+            font-size: 0.7rem;
+            font-weight: 700;
+            background: rgba(17, 17, 19, 0.1);
+            padding: 0.25rem 0.65rem;
+            border-radius: var(--radius-full);
+            letter-spacing: 0.05em;
+          }
+
+          .header-case-year {
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            opacity: 0.8;
+          }
+
+          .stack-card-body {
+            display: grid;
+            grid-template-columns: 1.15fr 1fr;
+            gap: 2.5rem;
+            align-items: center;
+            flex: 1;
+            min-height: 0;
+            margin-bottom: 1rem;
+          }
+
+          .stack-card-content {
+            display: flex;
             flex-direction: column;
-            align-items: flex-start;
-            gap: 0.5rem;
+            justify-content: center;
+            gap: 1rem;
+            height: 100%;
           }
 
           .stack-title-group {
+            display: flex;
+            flex-direction: column;
             gap: 0.35rem;
           }
 
+          .stack-card-title {
+            font-size: clamp(2rem, 3.2vw, 3rem);
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            line-height: 1.05;
+          }
+
+          .stack-card-subtitle {
+            font-size: clamp(1rem, 1.4vw, 1.25rem);
+            font-style: italic;
+            font-weight: 400;
+            opacity: 0.9;
+          }
+
+          .stack-card-desc {
+            font-size: 0.92rem;
+            line-height: 1.5;
+            opacity: 0.92;
+            max-width: 500px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+          }
+
+          .stack-tags-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.45rem;
+          }
+
+          .stack-tag-pill {
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            padding: 0.3rem 0.65rem;
+            border-radius: var(--radius-full);
+            border: 1px solid rgba(17, 17, 19, 0.08);
+          }
+
           .stack-action-row {
-            flex-direction: column;
-            align-items: flex-start;
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            margin-top: 0.35rem;
+          }
+
+          .stack-view-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: #111113;
+            color: #FFFFFF;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius-full);
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+          }
+
+          .stack-view-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
+            background: #000000;
+          }
+
+          .stack-live-link {
+            font-size: 0.75rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            color: inherit;
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            cursor: pointer;
+            opacity: 0.85;
+            transition: opacity var(--transition-fast);
+          }
+
+          .stack-live-link:hover {
+            opacity: 1;
+          }
+
+          .stack-card-visual {
+            width: 100%;
+            height: 100%;
+            max-height: 350px;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
+            border: 1px solid rgba(17, 17, 19, 0.1);
+            cursor: pointer;
+            transition: transform var(--transition-fast);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(8px);
+          }
+
+          .stack-card-visual:hover {
+            transform: scale(1.02);
           }
 
           .stack-card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(17, 17, 19, 0.1);
+            font-size: 0.7rem;
+            font-weight: 700;
+            opacity: 0.8;
+          }
+
+          .footer-action {
+            cursor: pointer;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+          }
+          .footer-action:hover {
+            opacity: 1;
+          }
+        }
+
+        /* =========================================================================
+           MOBILE & TABLET STYLES (max-width: 820px)
+           Natural vertical card flow: ZERO overlapping bug, full accessibility,
+           proper visual hierarchy with device mockups prominently displayed
+           ========================================================================= */
+        @media (max-width: 820px) {
+          .case-studies-section {
+            padding: 4rem 0 6rem;
+          }
+
+          .desktop-only {
+            display: none !important;
+          }
+
+          .cs-header-layout {
             flex-direction: column;
             align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+          }
+
+          .cs-heading {
+            font-size: clamp(2rem, 8vw, 2.8rem);
+          }
+
+          .cs-quick-nav {
+            margin-bottom: 2rem;
+            padding: 0.25rem 0;
+          }
+
+          .stacking-cards-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2.25rem;
+          }
+
+          .stacking-card-item {
+            position: relative !important;
+            top: auto !important;
+            min-height: auto !important;
+            height: auto !important;
+            margin-bottom: 0 !important;
+            border-radius: 24px;
+            padding: 1.75rem 1.25rem 1.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(17, 17, 19, 0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            scroll-margin-top: 85px;
+            overflow: hidden;
+          }
+
+          .stack-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid rgba(17, 17, 19, 0.1);
+          }
+
+          .header-case-label {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+          }
+
+          .case-num-pill {
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+          }
+
+          .case-metric-pill {
+            font-size: 0.65rem;
+            font-weight: 700;
+            background: rgba(17, 17, 19, 0.1);
+            padding: 0.2rem 0.5rem;
+            border-radius: var(--radius-full);
+          }
+
+          .header-case-year {
+            font-size: 0.75rem;
+            font-weight: 700;
+            opacity: 0.8;
+          }
+
+          .stack-card-body {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+          }
+
+          .stack-card-content {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            order: 1;
+          }
+
+          .stack-title-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+          }
+
+          .stack-card-title {
+            font-size: 1.65rem;
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+          }
+
+          .stack-card-subtitle {
+            font-size: 0.95rem;
+            font-style: italic;
+            opacity: 0.9;
+            line-height: 1.35;
+          }
+
+          /* Place visual mockup right after the title on mobile for maximum engagement */
+          .stack-card-visual {
+            width: 100%;
+            height: 230px;
+            min-height: 200px;
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+            order: 2;
+            cursor: pointer;
+          }
+
+          .stack-card-desc {
+            font-size: 0.88rem;
+            line-height: 1.55;
+            opacity: 0.92;
+            order: 3;
+          }
+
+          .stack-tags-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            order: 4;
+          }
+
+          .stack-tag-pill {
+            font-size: 0.62rem;
+            font-weight: 700;
+            padding: 0.25rem 0.6rem;
+            border-radius: var(--radius-full);
+          }
+
+          .stack-action-row {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-top: 0.35rem;
+            order: 5;
+          }
+
+          .stack-view-btn {
+            flex: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             gap: 0.5rem;
+            background: #111113;
+            color: #FFFFFF;
+            border: none;
+            padding: 0.85rem 1.25rem;
+            border-radius: var(--radius-full);
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+          }
+
+          .stack-live-link {
+            padding: 0.5rem 0.75rem;
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: inherit;
+            text-decoration: underline;
+            white-space: nowrap;
+          }
+
+          .stack-card-footer {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(17, 17, 19, 0.1);
+            font-size: 0.68rem;
+            opacity: 0.8;
+          }
+
+          .footer-action {
+            cursor: pointer;
+            text-decoration: underline;
           }
         }
       `}</style>

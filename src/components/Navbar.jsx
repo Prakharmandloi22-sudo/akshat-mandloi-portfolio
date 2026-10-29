@@ -25,13 +25,12 @@ export default function Navbar({ onOpenContact }) {
       // Map DOM sections to navbar link IDs in actual visual hierarchy
       const sectionToNav = [
         { elId: 'contact', navId: 'contact' },
-        { elId: 'case-studies', navId: 'work' },
         { elId: 'work', navId: 'work' },
-        { elId: 'core-skills', navId: 'skills' },
+        { elId: 'case-studies', navId: 'work' },
         { elId: 'skills', navId: 'skills' },
+        { elId: 'core-skills', navId: 'skills' },
         { elId: 'experience', navId: 'experience' },
-        { elId: 'about', navId: 'approach' },
-        { elId: 'approach', navId: 'approach' },
+        { elId: 'about', navId: 'about' },
         { elId: 'hero', navId: 'hero' }
       ];
 
@@ -61,9 +60,9 @@ export default function Navbar({ onOpenContact }) {
 
   const navLinks = [
     { label: 'WORK', href: '#work', id: 'work' },
-    { label: 'ABOUT', href: '#approach', id: 'approach' },
-    { label: 'SKILLS', href: '#skills', id: 'skills' },
+    { label: 'ABOUT', href: '#about', id: 'about' },
     { label: 'EXPERIENCE', href: '#experience', id: 'experience' },
+    { label: 'SKILLS', href: '#skills', id: 'skills' },
     { label: 'CONTACT', href: '#contact', id: 'contact' }
   ];
 
@@ -84,13 +83,7 @@ export default function Navbar({ onOpenContact }) {
       return;
     }
 
-    let target = null;
-    if (href === '#skills') {
-      // Prioritize the Core Skills & Toolkit dark card, or the services section
-      target = document.getElementById('core-skills') || document.getElementById('skills') || document.querySelector('.services-toolkit-section');
-    } else {
-      target = document.querySelector(href);
-    }
+    const target = document.querySelector(href);
 
     if (target) {
       const headerOffset = 76;

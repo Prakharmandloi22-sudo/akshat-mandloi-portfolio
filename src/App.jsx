@@ -1,13 +1,9 @@
 import React from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import DesignApproach from './components/DesignApproach';
 import AboutMe from './components/AboutMe';
 import ProfessionalExperience from './components/ProfessionalExperience';
-import ServicesAndToolkit from './components/ServicesAndToolkit';
-import SelectedWork from './components/SelectedWork';
-import FeaturedProduct from './components/FeaturedProduct';
-import SystemThinking from './components/SystemThinking';
+import CoreSkills from './components/CoreSkills';
 import CaseStudiesSection from './components/CaseStudiesSection';
 import CtaBanner from './components/CtaBanner';
 import Footer from './components/Footer';
@@ -26,13 +22,9 @@ export default function App() {
       <Navbar onOpenContact={handleOpenContact} />
       <main>
         <Hero onOpenContact={handleOpenContact} />
-        <DesignApproach />
         <AboutMe />
         <ProfessionalExperience />
-        <ServicesAndToolkit />
-        <SelectedWork />
-        <FeaturedProduct />
-        <SystemThinking />
+        <CoreSkills />
         <CaseStudiesSection />
         <CtaBanner />
       </main>

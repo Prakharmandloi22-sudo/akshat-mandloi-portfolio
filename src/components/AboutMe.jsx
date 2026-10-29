@@ -19,7 +19,7 @@ export default function AboutMe() {
         <div className="about-layout">
           {/* Left Column Tag */}
           <div className="about-tag-col font-mono">
-            <span className="about-num">02</span>
+            <span className="about-num">01</span>
             <span className="about-tag">ABOUT ME</span>
           </div>
 
