@@ -101,7 +101,7 @@ export default function CaseStudiesSection() {
       <div className="container">
         {/* Section Header */}
         <div className="cs-top-bar font-mono">
-          <span className="cs-meta">04 / CASE STUDIES</span>
+          <span className="cs-meta">02 / CASE STUDIES</span>
           <span className="cs-stack-hint desktop-only">SCROLL TO STACK CARDS ↕</span>
         </div>
 

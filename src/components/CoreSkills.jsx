@@ -42,13 +42,13 @@ export default function CoreSkills() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          {/* Top Bar: Title & (03) — TOOLKIT */}
+          {/* Top Bar: Title & (04) — TOOLKIT */}
           <div className="skills-card-top-bar">
             <div className="skills-title-stack font-heading">
               <span>CORE</span>
               <span>SKILLS</span>
             </div>
-            <span className="skills-meta-tag font-mono">(03) — TOOLKIT</span>
+            <span className="skills-meta-tag font-mono">(04) — TOOLKIT</span>
           </div>
 
           {/* Interactive Skills Cloud with Glowing Floating Sticker */}

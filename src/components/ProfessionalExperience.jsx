@@ -12,7 +12,7 @@ export default function ProfessionalExperience() {
       <div className="container">
         {/* Top Header Meta */}
         <div className="section-meta-header font-mono">
-          <span className="section-num">02</span>
+          <span className="section-num">03</span>
           <span className="section-title">PROFESSIONAL EXPERIENCE</span>
         </div>
 

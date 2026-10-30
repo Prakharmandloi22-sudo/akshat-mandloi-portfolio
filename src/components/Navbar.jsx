@@ -25,11 +25,11 @@ export default function Navbar({ onOpenContact }) {
       // Map DOM sections to navbar link IDs in actual visual hierarchy
       const sectionToNav = [
         { elId: 'contact', navId: 'contact' },
-        { elId: 'work', navId: 'work' },
-        { elId: 'case-studies', navId: 'work' },
         { elId: 'skills', navId: 'skills' },
         { elId: 'core-skills', navId: 'skills' },
         { elId: 'experience', navId: 'experience' },
+        { elId: 'work', navId: 'work' },
+        { elId: 'case-studies', navId: 'work' },
         { elId: 'about', navId: 'about' },
         { elId: 'hero', navId: 'hero' }
       ];
@@ -59,8 +59,8 @@ export default function Navbar({ onOpenContact }) {
   }, []);
 
   const navLinks = [
-    { label: 'WORK', href: '#work', id: 'work' },
     { label: 'ABOUT', href: '#about', id: 'about' },
+    { label: 'WORK', href: '#work', id: 'work' },
     { label: 'EXPERIENCE', href: '#experience', id: 'experience' },
     { label: 'SKILLS', href: '#skills', id: 'skills' },
     { label: 'CONTACT', href: '#contact', id: 'contact' }

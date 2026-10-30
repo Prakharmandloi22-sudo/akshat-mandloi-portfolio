@@ -23,9 +23,9 @@ export default function App() {
       <main>
         <Hero onOpenContact={handleOpenContact} />
         <AboutMe />
+        <CaseStudiesSection />
         <ProfessionalExperience />
         <CoreSkills />
-        <CaseStudiesSection />
         <CtaBanner />
       </main>
       <Footer />
