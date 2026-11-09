@@ -102,7 +102,7 @@ export default function CaseStudiesSection() {
         {/* Section Header */}
         <div className="cs-top-bar font-mono">
           <span className="cs-meta">02 / CASE STUDIES</span>
-          <span className="cs-stack-hint desktop-only">SCROLL TO STACK CARDS ↕</span>
+          <span className="cs-stack-hint">SCROLL TO STACK CARDS ↕</span>
         </div>
 
         <div className="cs-header-layout">
@@ -602,8 +602,8 @@ export default function CaseStudiesSection() {
 
         /* =========================================================================
            MOBILE & TABLET STYLES (max-width: 820px)
-           Natural vertical card flow: ZERO overlapping bug, full accessibility,
-           proper visual hierarchy with device mockups prominently displayed
+           Sticky Stacking Deck Scroll: Exactly matching Desktop View
+           Cards stick and slide over each other cleanly as user scrolls
            ========================================================================= */
         @media (max-width: 820px) {
           .case-studies-section {
@@ -612,6 +612,24 @@ export default function CaseStudiesSection() {
 
           .desktop-only {
             display: none !important;
+          }
+
+          .cs-top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+            margin-bottom: 1.25rem;
+          }
+
+          .cs-meta {
+            font-size: 0.72rem;
+          }
+
+          .cs-stack-hint {
+            font-size: 0.62rem;
+            padding: 0.25rem 0.6rem;
+            letter-spacing: 0.06em;
           }
 
           .cs-header-layout {
@@ -625,40 +643,54 @@ export default function CaseStudiesSection() {
             font-size: clamp(2rem, 8vw, 2.8rem);
           }
 
+          .cs-subtext {
+            font-size: 0.88rem;
+            line-height: 1.5;
+            max-width: 100%;
+          }
+
           .cs-quick-nav {
-            margin-bottom: 2rem;
+            margin-bottom: 2.25rem;
             padding: 0.25rem 0;
           }
 
+          /* Mobile Sticky Stacking Cards Deck */
           .stacking-cards-container {
-            display: flex;
-            flex-direction: column;
-            gap: 2.25rem;
+            position: relative;
+            display: block;
+            padding-bottom: 3.5rem;
           }
 
           .stacking-card-item {
-            position: relative !important;
-            top: auto !important;
-            min-height: auto !important;
-            height: auto !important;
-            margin-bottom: 0 !important;
-            border-radius: 24px;
-            padding: 1.75rem 1.25rem 1.5rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            border: 1px solid rgba(17, 17, 19, 0.1);
+            position: sticky !important;
+            top: calc(72px + var(--card-index) * 18px) !important;
+            z-index: calc(10 + var(--card-index));
+            height: min(580px, calc(100vh - 120px)) !important;
+            min-height: 460px !important;
+            margin-bottom: 25vh !important;
+            border-radius: 22px;
+            padding: 1.25rem 1.15rem 1rem;
+            box-shadow: 0 -6px 20px rgba(0, 0, 0, 0.12), 0 14px 32px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(17, 17, 19, 0.12);
             display: flex;
             flex-direction: column;
-            gap: 1.25rem;
-            scroll-margin-top: 85px;
+            justify-content: space-between;
             overflow: hidden;
+            transition: box-shadow 0.3s ease;
+          }
+
+          .stacking-card-item:last-child {
+            margin-bottom: 2.5rem !important;
           }
 
           .stack-card-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding-bottom: 1rem;
+            padding-bottom: 0.65rem;
             border-bottom: 1px solid rgba(17, 17, 19, 0.1);
+            margin-bottom: 0.65rem;
+            flex-shrink: 0;
           }
 
           .header-case-label {
@@ -674,7 +706,7 @@ export default function CaseStudiesSection() {
           }
 
           .case-metric-pill {
-            font-size: 0.65rem;
+            font-size: 0.62rem;
             font-weight: 700;
             background: rgba(17, 17, 19, 0.1);
             padding: 0.2rem 0.5rem;
@@ -682,7 +714,7 @@ export default function CaseStudiesSection() {
           }
 
           .header-case-year {
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             font-weight: 700;
             opacity: 0.8;
           }
@@ -690,117 +722,121 @@ export default function CaseStudiesSection() {
           .stack-card-body {
             display: flex;
             flex-direction: column;
-            gap: 1.25rem;
+            gap: 0.65rem;
+            flex: 1;
+            min-height: 0;
+            justify-content: space-between;
           }
 
           .stack-card-content {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
-            order: 1;
+            gap: 0.55rem;
+            flex-shrink: 0;
           }
 
           .stack-title-group {
             display: flex;
             flex-direction: column;
-            gap: 0.35rem;
+            gap: 0.2rem;
           }
 
           .stack-card-title {
-            font-size: clamp(1.4rem, 5.5vw, 1.85rem);
+            font-size: clamp(1.25rem, 5vw, 1.65rem);
             font-weight: 900;
-            line-height: 1.12;
+            line-height: 1.1;
             letter-spacing: -0.02em;
           }
 
           .stack-card-subtitle {
-            font-size: 0.88rem;
+            font-size: 0.8rem;
             font-style: italic;
             opacity: 0.9;
-            line-height: 1.35;
-          }
-
-          /* Place visual mockup right after the title on mobile for maximum engagement */
-          .stack-card-visual {
-            width: 100%;
-            height: 250px;
-            min-height: 220px;
-            border-radius: 16px;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-            order: 2;
-            cursor: pointer;
-            background: rgba(255, 255, 255, 0.25);
+            line-height: 1.25;
           }
 
           .stack-card-desc {
-            font-size: 0.88rem;
-            line-height: 1.55;
+            font-size: 0.8rem;
+            line-height: 1.45;
             opacity: 0.92;
-            order: 3;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
           }
 
           .stack-tags-row {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.4rem;
-            order: 4;
+            gap: 0.35rem;
           }
 
           .stack-tag-pill {
-            font-size: 0.62rem;
+            font-size: 0.6rem;
             font-weight: 700;
-            padding: 0.25rem 0.6rem;
+            padding: 0.2rem 0.5rem;
             border-radius: var(--radius-full);
           }
 
           .stack-action-row {
             display: flex;
             align-items: center;
-            gap: 0.6rem;
-            margin-top: 0.35rem;
+            gap: 0.65rem;
+            margin-top: 0.15rem;
             flex-wrap: wrap;
-            order: 5;
           }
 
           .stack-view-btn {
-            flex: 1;
-            min-width: 140px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 0.5rem;
+            gap: 0.4rem;
             background: #111113;
             color: #FFFFFF;
             border: none;
-            padding: 0.85rem 1.25rem;
+            padding: 0.6rem 1.1rem;
             border-radius: var(--radius-full);
-            font-size: 0.78rem;
+            font-size: 0.72rem;
             font-weight: 800;
             letter-spacing: 0.06em;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            cursor: pointer;
           }
 
           .stack-live-link {
-            padding: 0.5rem 0.75rem;
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             font-weight: 800;
             color: inherit;
             text-decoration: underline;
+            text-underline-offset: 3px;
             white-space: nowrap;
+          }
+
+          .stack-card-visual {
+            width: 100%;
+            flex: 1;
+            min-height: 140px;
+            max-height: 200px;
+            border-radius: 14px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+            background: rgba(255, 255, 255, 0.25);
+            cursor: pointer;
           }
 
           .stack-card-footer {
             display: flex;
-            flex-direction: column;
-            gap: 0.35rem;
-            padding-top: 1rem;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 0.6rem;
             border-top: 1px solid rgba(17, 17, 19, 0.1);
-            font-size: 0.68rem;
+            font-size: 0.65rem;
+            font-weight: 700;
             opacity: 0.8;
+            flex-shrink: 0;
           }
 
           .footer-action {
