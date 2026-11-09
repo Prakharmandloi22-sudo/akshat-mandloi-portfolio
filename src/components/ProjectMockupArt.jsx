@@ -25,7 +25,7 @@ export default function ProjectMockupArt({ projectId }) {
       <div 
         className="figma-art-card sheque-card font-heading" 
         style={{ 
-          padding: '0.75rem', 
+          padding: 0, 
           overflow: 'hidden', 
           position: 'relative', 
           display: 'flex', 
