@@ -22,115 +22,31 @@ export default function ProjectMockupArt({ projectId }) {
 
   if (projectId === 'sheque') {
     return (
-      <div className="figma-art-card sheque-card font-heading">
-        {/* Top Right Circle Badge 01 */}
-        <div className="top-right-circle-badge font-mono">01</div>
-
-        {/* Inner Editorial Poster */}
-        <div className="sheque-editorial-poster">
-          {/* Header row */}
-          <div className="poster-header font-mono">
-            <div className="header-left">
-              <span className="num text-dark">01</span>
-              <span className="h-line"></span>
-              <span className="meta">WEB DESIGN CASE STUDY</span>
-            </div>
-            <span className="year font-mono">2026</span>
-          </div>
-
-          {/* Huge Luxury Serif Title */}
-          <h2 className="sheque-luxury-title font-serif">SHEQU</h2>
-
-          {/* Subtitle with Star */}
-          <div className="poster-subtitle-row font-mono">
-            <span className="red-accent-line"></span>
-            <span className="sub-txt">E-COMMERCE WEBSITE</span>
-            <span className="star-icon text-orange">✦</span>
-          </div>
-
-          {/* Tags row */}
-          <div className="poster-tags-row font-mono">
-            <span>UX STRATEGY</span>
-            <span className="pipe">|</span>
-            <span>UI DESIGN</span>
-            <span className="pipe">|</span>
-            <span>RESPONSIVE WEB</span>
-          </div>
-
-          {/* CTA & Description */}
-          <div className="poster-cta-row">
-            <a 
-              href="https://fancy-reduce-60668527.figma.site/" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="circle-arrow-btn"
-              onClick={(e) => e.stopPropagation()}
-              style={{ textDecoration: 'none', color: 'inherit' }}
-            >
-              <span className="c-arrow">→</span>
-              <span className="c-txt font-mono">EXPLORE DEMO</span>
-            </a>
-            <p className="poster-tagline font-body">
-              Live Interactive Prototype · Elegant Jewelry Shopping Experience
-            </p>
-          </div>
-
-          {/* Devices Group: Dark Laptop & Phone Mockups with Live Site */}
-          <div className="sheque-devices-group">
-            <div className="sheque-laptop-frame">
-              <div className="laptop-header-bar">
-                <span className="dots red"></span>
-                <span className="dots yellow"></span>
-                <span className="dots green"></span>
-                <span className="laptop-url-pill font-mono">fancy-reduce-60668527.figma.site</span>
-              </div>
-              <div className="laptop-screen-content sheque-editorial-screen">
-                <div className="mock-sheque-nav">
-                  <span className="brand font-serif">SHEQU</span>
-                  <div className="links font-mono">
-                    <span>COLLECTION</span>
-                    <span>HIGH JEWELRY</span>
-                    <span>ABOUT</span>
-                  </div>
-                  <span className="bag font-mono">BAG (1)</span>
-                </div>
-                <div className="mock-sheque-hero">
-                  <div className="hero-left">
-                    <span className="tag font-mono">AUTUMN 2024</span>
-                    <h4 className="title font-serif">Handcrafted Elegance</h4>
-                    <p className="desc">18K Solid Gold & Responsibly Sourced Diamonds</p>
-                    <span className="btn-mock font-mono">VIEW PIECES →</span>
-                  </div>
-                  <div className="hero-right">
-                    <div className="gem-art">
-                      <span className="sparkle">✦</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="sheque-phone-frame">
-              <div className="phone-screen-inner sheque-phone-mock">
-                <div className="phone-nav font-serif">
-                  <span>SHEQU</span>
-                  <span className="menu">≡</span>
-                </div>
-                <div className="phone-product-card">
-                  <div className="phone-gem">✦</div>
-                  <span className="p-name font-serif">Aura Solitaire</span>
-                  <span className="p-price font-mono">$1,850</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Bottom Right Teal Metric Badge */}
-          <div className="sheque-teal-badge font-mono">
-            <span className="val font-heading">96%</span>
-            <span className="lbl font-mono">task success</span>
-          </div>
-        </div>
+      <div 
+        className="figma-art-card sheque-card font-heading" 
+        style={{ 
+          padding: '0.75rem', 
+          overflow: 'hidden', 
+          position: 'relative', 
+          display: 'flex', 
+          alignItems: 'center', 
+          justifyContent: 'center',
+          width: '100%',
+          height: '100%',
+          background: '#FAF8F5'
+        }}
+      >
+        <img 
+          src="./sheque_mockup.png" 
+          alt="SHEQU Luxury Jewelry Case Study Mockup" 
+          style={{ 
+            width: '100%', 
+            height: '100%', 
+            objectFit: 'contain', 
+            borderRadius: '12px',
+            boxShadow: '0 8px 24px rgba(0, 0, 0, 0.08)' 
+          }} 
+        />
       </div>
     );
   }

@@ -243,6 +243,7 @@ export default function AboutMe() {
         @media (max-width: 1024px) {
           .about-layout {
             grid-template-columns: 1fr;
+            gap: 2rem;
           }
 
           .about-grid {
@@ -252,6 +253,41 @@ export default function AboutMe() {
 
           .about-graphic-box {
             height: 320px;
+          }
+        }
+
+        @media (max-width: 640px) {
+          .about-me-section {
+            padding: 4rem 0;
+          }
+
+          .about-heading {
+            font-size: clamp(2rem, 6.5vw, 2.8rem);
+            margin-bottom: 2rem;
+          }
+
+          .about-graphic-box {
+            height: 240px;
+          }
+
+          .watermark-am {
+            font-size: 8rem;
+          }
+
+          .orange-m {
+            font-size: 6rem;
+            right: 1.5rem;
+            bottom: 1rem;
+          }
+
+          .about-lead {
+            font-size: 1.35rem;
+            margin-bottom: 1rem;
+          }
+
+          .about-bio-text {
+            font-size: 0.95rem;
+            margin-bottom: 1.75rem;
           }
         }
       `}</style>

@@ -335,9 +335,14 @@ export default function CtaBanner() {
         }
 
         @media (max-width: 768px) {
+          .shift-contact-section {
+            padding: 4rem 0 6rem;
+          }
+
           .shift-card-wrapper {
-            padding: 3rem 1.75rem;
-            gap: 2rem;
+            padding: 2.25rem 1.25rem;
+            gap: 1.75rem;
+            border-radius: 20px;
           }
 
           .shift-top-bar {
@@ -346,14 +351,29 @@ export default function CtaBanner() {
             gap: 0.5rem;
           }
 
-          .shift-social-row {
-            gap: 1.5rem;
+          .shift-main-heading {
+            font-size: clamp(2rem, 7.5vw, 3rem);
+          }
+
+          .shift-email-address {
+            font-size: clamp(1.1rem, 4.5vw, 1.8rem);
+            word-break: break-all;
+          }
+
+          .keycaps-row {
+            gap: 0.4rem;
+            justify-content: center;
           }
 
           .tactile-keycap {
-            width: 44px;
-            height: 48px;
-            font-size: 1.1rem;
+            width: 36px;
+            height: 42px;
+            font-size: 0.95rem;
+            border-radius: 8px;
+          }
+
+          .shift-social-row {
+            gap: 1.25rem;
           }
         }
       `}</style>

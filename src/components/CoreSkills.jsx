@@ -233,19 +233,32 @@ export default function CoreSkills() {
         }
 
         @media (max-width: 768px) {
+          .core-skills-section {
+            padding: 4rem 0;
+          }
+
           .core-skills-dark-card {
-            padding: 2.25rem 1.5rem;
+            padding: 2rem 1.25rem;
             border-radius: 20px;
           }
 
+          .skills-card-top-bar {
+            margin-bottom: 2rem;
+          }
+
+          .skills-title-stack {
+            font-size: 2rem;
+          }
+
           .skills-cloud-wall {
-            font-size: 1.25rem;
-            gap: 0.6rem 0.8rem;
+            font-size: 1.15rem;
+            gap: 0.5rem 0.6rem;
+            margin-bottom: 2rem;
           }
 
           .tool-dark-pill {
-            padding: 0.5rem 1rem;
-            font-size: 0.7rem;
+            padding: 0.45rem 0.9rem;
+            font-size: 0.68rem;
           }
         }
       `}</style>

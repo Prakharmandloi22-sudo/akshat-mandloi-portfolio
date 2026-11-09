@@ -513,19 +513,100 @@ export default function Hero({ onOpenContact }) {
         @media (max-width: 1024px) {
           .hero-container {
             grid-template-columns: 1fr;
-            gap: 3rem;
+            gap: 2.5rem;
           }
 
           .hero-title {
-            font-size: clamp(3.2rem, 9vw, 4.8rem);
+            font-size: clamp(2.6rem, 8vw, 4.4rem);
           }
 
           .figma-hero-card {
-            height: 400px;
+            height: 380px;
           }
 
           .text-ui, .text-ux-outline {
-            font-size: 7.5rem;
+            font-size: clamp(4.5rem, 16vw, 7rem);
+          }
+        }
+
+        @media (max-width: 640px) {
+          .hero-section {
+            padding-top: calc(var(--header-height) + 1rem);
+            padding-bottom: 3rem;
+            min-height: auto;
+          }
+
+          .hero-full-wrapper {
+            gap: 1.75rem;
+          }
+
+          .hero-ref-top-bar {
+            padding-bottom: 0.75rem;
+          }
+
+          .ref-top-meta {
+            font-size: 0.68rem;
+            letter-spacing: 0.08em;
+          }
+
+          .hero-description {
+            font-size: 1rem;
+            margin-bottom: 1.75rem;
+          }
+
+          .hero-actions {
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            width: 100%;
+          }
+
+          .hero-actions .btn {
+            flex: 1;
+            min-width: 140px;
+            padding: 0.75rem 1rem;
+            font-size: 0.78rem;
+          }
+
+          .figma-hero-card {
+            height: 320px;
+            padding: 1.25rem;
+          }
+
+          .text-ui, .text-ux-outline {
+            font-size: clamp(3.4rem, 14vw, 5rem);
+          }
+
+          .red-underline-bar {
+            max-width: 130px;
+            width: 50%;
+          }
+
+          .hero-badge-box {
+            top: 0.85rem;
+            left: 0.85rem;
+            padding: 0.5rem 0.75rem;
+          }
+
+          .badge-title {
+            font-size: 1rem;
+          }
+
+          .hero-orange-circle {
+            width: 54px;
+            height: 54px;
+            top: 1rem;
+            right: 1rem;
+          }
+
+          .hero-ref-bottom-bar {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1.25rem;
+            padding-top: 1.25rem;
+          }
+
+          .ref-bottom-right {
+            align-items: flex-start;
           }
         }
       `}</style>

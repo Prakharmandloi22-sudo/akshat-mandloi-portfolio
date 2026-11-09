@@ -1333,3 +1333,97 @@ img, video {
   flex-direction: column;
   justify-content: space-between;
 }
+
+/* Mobile Responsive Optimization for Mockup Art & Dashboards */
+@media (max-width: 640px) {
+  .tablet-sidebar {
+    width: 50px;
+    padding: 0.5rem 0.25rem;
+  }
+  .nura-logo {
+    font-size: 0.5rem;
+  }
+  .nav-icons {
+    gap: 0.5rem;
+    font-size: 0.7rem;
+  }
+  .tablet-content {
+    padding: 0.5rem;
+  }
+  .content-top .welcome {
+    font-size: 0.65rem;
+  }
+  .content-top .sync-time {
+    font-size: 0.45rem;
+  }
+  .metric-row {
+    margin: 0.35rem 0;
+    gap: 0.4rem;
+  }
+  .metric-card {
+    min-width: 70px;
+    padding: 0.35rem;
+  }
+  .metric-card .val {
+    font-size: 1.05rem;
+  }
+  .bars-card {
+    height: 44px;
+    padding: 0.35rem;
+  }
+  .sub-card {
+    padding: 0.35rem;
+  }
+  .sub-card .val-big {
+    font-size: 0.9rem;
+  }
+  .sub-card .val-text {
+    font-size: 0.52rem;
+  }
+  .sub-card .link-text {
+    display: none;
+  }
+  .saas-sidebar {
+    width: 54px;
+    padding: 0.5rem 0.25rem;
+  }
+  .saas-logo {
+    font-size: 0.55rem;
+  }
+  .saas-nav-list {
+    display: none;
+  }
+  .saas-content {
+    padding: 0.5rem;
+  }
+  .saas-top-header .user-text {
+    font-size: 0.65rem;
+  }
+  .new-order-btn {
+    font-size: 0.48rem;
+    padding: 0.2rem 0.35rem;
+  }
+  .saas-metrics-row {
+    gap: 0.3rem;
+    margin: 0.35rem 0;
+  }
+  .m-card {
+    padding: 0.3rem;
+  }
+  .m-card .m-lbl {
+    font-size: 0.42rem;
+  }
+  .m-card .m-val {
+    font-size: 0.8rem;
+  }
+  .m-card .m-sub {
+    font-size: 0.42rem;
+  }
+  .saas-chart-box {
+    padding: 0.35rem;
+    height: 50px;
+  }
+  .sales-bars-row {
+    height: 40px;
+  }
+}

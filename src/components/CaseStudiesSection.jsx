@@ -309,6 +309,9 @@ export default function CaseStudiesSection() {
           gap: 1rem;
           margin-bottom: 3.5rem;
           padding: 0.75rem 0;
+          width: 100%;
+          max-width: 100%;
+          overflow: hidden;
         }
 
         .cs-nav-label {
@@ -317,6 +320,7 @@ export default function CaseStudiesSection() {
           letter-spacing: 0.1em;
           color: var(--text-dark-muted);
           white-space: nowrap;
+          flex-shrink: 0;
         }
 
         .cs-nav-pills-scroll {
@@ -327,6 +331,8 @@ export default function CaseStudiesSection() {
           scrollbar-width: none;
           -webkit-overflow-scrolling: touch;
           padding: 4px 2px;
+          min-width: 0;
+          flex: 1;
         }
         .cs-nav-pills-scroll::-webkit-scrollbar {
           display: none;
@@ -701,14 +707,14 @@ export default function CaseStudiesSection() {
           }
 
           .stack-card-title {
-            font-size: 1.65rem;
+            font-size: clamp(1.4rem, 5.5vw, 1.85rem);
             font-weight: 900;
-            line-height: 1.1;
+            line-height: 1.12;
             letter-spacing: -0.02em;
           }
 
           .stack-card-subtitle {
-            font-size: 0.95rem;
+            font-size: 0.88rem;
             font-style: italic;
             opacity: 0.9;
             line-height: 1.35;
@@ -717,8 +723,8 @@ export default function CaseStudiesSection() {
           /* Place visual mockup right after the title on mobile for maximum engagement */
           .stack-card-visual {
             width: 100%;
-            height: 230px;
-            min-height: 200px;
+            height: 250px;
+            min-height: 220px;
             border-radius: 16px;
             overflow: hidden;
             display: flex;
@@ -727,6 +733,7 @@ export default function CaseStudiesSection() {
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
             order: 2;
             cursor: pointer;
+            background: rgba(255, 255, 255, 0.25);
           }
 
           .stack-card-desc {
@@ -753,13 +760,15 @@ export default function CaseStudiesSection() {
           .stack-action-row {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 0.6rem;
             margin-top: 0.35rem;
+            flex-wrap: wrap;
             order: 5;
           }
 
           .stack-view-btn {
             flex: 1;
+            min-width: 140px;
             display: inline-flex;
             align-items: center;
             justify-content: center;

@@ -290,6 +290,8 @@ export default function ProfessionalExperience() {
         @media (max-width: 1024px) {
           .prof-exp-layout {
             grid-template-columns: 1fr;
+            gap: 2.5rem;
+            margin-bottom: 3.5rem;
           }
 
           .capabilities-pills-grid {
@@ -306,6 +308,42 @@ export default function ProfessionalExperience() {
 
           .role-focus-grid {
             grid-template-columns: 1fr;
+          }
+        }
+
+        @media (max-width: 640px) {
+          .prof-exp-section {
+            padding: 4rem 0;
+          }
+
+          .section-meta-header {
+            margin-bottom: 2rem;
+          }
+
+          .current-chapter-card {
+            padding: 1.75rem 1.25rem;
+          }
+
+          .company-title {
+            font-size: 2rem;
+          }
+
+          .narrative-heading {
+            font-size: clamp(1.8rem, 6.5vw, 2.4rem);
+            margin-bottom: 1.25rem;
+          }
+
+          .narrative-bio {
+            font-size: 0.95rem;
+            margin-bottom: 2rem;
+          }
+
+          .role-focus-grid {
+            gap: 1rem;
+          }
+
+          .rf-card {
+            padding: 1.5rem 1.25rem;
           }
         }
       `}</style>
